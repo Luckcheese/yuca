@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Consumer;
 
 import retrofit2.Response;
 
@@ -23,5 +24,12 @@ public class ServerTest {
 
         List<Product> result = response.body();
         assertTrue("response is empty", result != null && !result.isEmpty());
+
+        result.forEach(new Consumer<Product>() {
+            @Override
+            public void accept(Product product) {
+                assertNotNull("product is null", product);
+            }
+        });
     }
 }
