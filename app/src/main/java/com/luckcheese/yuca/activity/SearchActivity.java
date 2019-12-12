@@ -5,7 +5,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -40,7 +40,9 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
 
         RecyclerView listView = findViewById(R.id.list);
         listView.setAdapter(adapter);
-        listView.setLayoutManager(new LinearLayoutManager(this));
+
+        int gridColumns = getResources().getInteger(R.integer.search_list_columns);
+        listView.setLayoutManager(new GridLayoutManager(this, gridColumns));
     }
 
     private void search() {
