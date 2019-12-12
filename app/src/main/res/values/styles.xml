@@ -17,4 +17,19 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ProductTitle">
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:textColor">@color/font_product_title</item>
+    </style>
+
+    <style name="ProductPrice">
+        <item name="android:textSize">@dimen/font_title</item>
+        <item name="android:textColor">@color/font_product_price</item>
+    </style>
+
+    <style name="ProductInstallment">
+        <item name="android:textSize">@dimen/font_secondary</item>
+        <item name="android:textColor">@color/font_product_installment</item>
+    </style>
+
 </resources>

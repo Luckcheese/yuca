@@ -3,31 +3,42 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
-    android:orientation="vertical">
+    android:layout_height="@dimen/item_product_height"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_horizontal"
+    android:paddingRight="@dimen/padding_horizontal"
+    android:paddingTop="@dimen/padding_vertical"
+    android:paddingBottom="@dimen/padding_vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         tools:src="@drawable/ic_launcher_background"/>
 
     <androidx.appcompat.widget.AppCompatTextView
+        style="@style/ProductTitle"
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical"
         tools:text="Produto baratinho"  />
 
     <androidx.appcompat.widget.AppCompatTextView
+        style="@style/ProductPrice"
         android:id="@+id/current_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical"
         tools:text="R$ 10000,00"  />
 
     <androidx.appcompat.widget.AppCompatTextView
+        style="@style/ProductInstallment"
         android:id="@+id/installments"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_vertical"
         android:visibility="gone"
         tools:text="Até 2x sem juros" />
 </LinearLayout>

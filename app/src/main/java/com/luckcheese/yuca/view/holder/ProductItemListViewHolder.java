@@ -36,7 +36,11 @@ public class ProductItemListViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void configureView() {
-        Glide.with(imageView).load(product.getPicture()).into(imageView);
+        Glide
+                .with(imageView)
+                .load(product.getPicture())
+                .centerCrop()
+                .into(imageView);
 
         titleView.setText(product.getTitle());
         currentPriceView.setText(product.getPrice().getCurrent());
