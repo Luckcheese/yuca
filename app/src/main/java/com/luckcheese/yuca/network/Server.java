@@ -17,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Server {
 
     private final Requests requests;
+    private final String serverError;
 
     public Server(Context context) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -25,6 +26,8 @@ public class Server {
                 .build();
 
         requests = retrofit.create(Requests.class);
+
+        serverError = context.getString(R.string.default_server_error);
     }
 
     public Requests getRequests() {
@@ -43,7 +46,7 @@ public class Server {
                     try {
                         errorMessage = response.errorBody().string();
                     } catch (IOException e) {
-                        errorMessage = "Request error";
+                        errorMessage = serverError;
                     }
 
                     callback.onError(response.code(), errorMessage);
@@ -52,7 +55,7 @@ public class Server {
 
             @Override
             public void onFailure(Call<T> call, Throwable t) {
-                callback.onError(0, t.getMessage());
+                callback.onError(0, serverError);
             }
         });
     }
