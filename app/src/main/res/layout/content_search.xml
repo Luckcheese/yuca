@@ -8,4 +8,10 @@
     tools:context=".activity.SearchActivity"
     tools:showIn="@layout/activity_search">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_product"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

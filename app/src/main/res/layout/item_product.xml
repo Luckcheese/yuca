@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:src="@drawable/ic_launcher_background"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Produto baratinho"  />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/current_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="R$ 10000,00"  />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/installments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:text="Até 2x sem juros" />
+</LinearLayout>
