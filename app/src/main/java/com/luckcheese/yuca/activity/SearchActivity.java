@@ -5,18 +5,22 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.luckcheese.yuca.R;
 import com.luckcheese.yuca.controller.SearchController;
 import com.luckcheese.yuca.controller.callback.ProductsCallback;
 import com.luckcheese.yuca.model.Product;
+import com.luckcheese.yuca.view.adapter.ProductsAdapter;
 
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements ProductsCallback {
 
     private SearchController controller;
+    private ProductsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +30,17 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
         setSupportActionBar(toolbar);
 
         controller = new SearchController(this);
+        configureView();
 
         search();
+    }
+
+    private void configureView() {
+        adapter = new ProductsAdapter(this);
+
+        RecyclerView listView = findViewById(R.id.list);
+        listView.setAdapter(adapter);
+        listView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void search() {
