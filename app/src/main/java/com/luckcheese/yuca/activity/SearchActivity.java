@@ -49,7 +49,7 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
 
     @Override
     public void onProductsReceived(List<Product> products) {
-
+        adapter.setProducts(products);
     }
 
     @Override
