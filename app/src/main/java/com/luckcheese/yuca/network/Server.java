@@ -45,7 +45,7 @@ public class Server {
                     String errorMessage;
                     try {
                         errorMessage = response.errorBody().string();
-                    } catch (IOException e) {
+                    } catch (IOException | NullPointerException e) {
                         errorMessage = serverError;
                     }
 
