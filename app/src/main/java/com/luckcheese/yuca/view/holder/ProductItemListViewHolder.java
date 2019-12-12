@@ -7,6 +7,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.luckcheese.yuca.R;
 import com.luckcheese.yuca.model.Product;
 
@@ -35,6 +36,8 @@ public class ProductItemListViewHolder extends RecyclerView.ViewHolder {
     }
 
     private void configureView() {
+        Glide.with(imageView).load(product.getPicture()).into(imageView);
+
         titleView.setText(product.getTitle());
         currentPriceView.setText(product.getPrice().getCurrent());
         installmentsView.setText(product.getPrice().getInstallment());
