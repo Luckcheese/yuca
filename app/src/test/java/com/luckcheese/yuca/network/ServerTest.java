@@ -20,6 +20,8 @@ public class ServerTest {
         Response<List<Product>> response = server.getRequests().getProducts().execute();
 
         assertTrue("request failed", response.isSuccessful());
-        assertTrue("response is empty", response.body() != null && !response.body().isEmpty());
+
+        List<Product> result = response.body();
+        assertTrue("response is empty", result != null && !result.isEmpty());
     }
 }
