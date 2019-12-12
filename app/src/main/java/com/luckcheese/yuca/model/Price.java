@@ -17,4 +17,8 @@ public class Price {
     public String getInstallment() {
         return installment;
     }
+
+    public boolean hasInstallment() {
+        return installment != null;
+    }
 }

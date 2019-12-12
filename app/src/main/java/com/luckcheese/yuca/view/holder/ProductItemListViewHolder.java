@@ -45,5 +45,6 @@ public class ProductItemListViewHolder extends RecyclerView.ViewHolder {
         titleView.setText(product.getTitle());
         currentPriceView.setText(product.getPrice().getCurrent());
         installmentsView.setText(product.getPrice().getInstallment());
+        installmentsView.setVisibility(product.getPrice().hasInstallment() ? View.VISIBLE : View.GONE);
     }
 }
