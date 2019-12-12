@@ -1,9 +1,15 @@
 package com.luckcheese.yuca.network;
 
+import android.content.Context;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
 import com.luckcheese.yuca.model.Price;
 import com.luckcheese.yuca.model.Product;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import java.io.IOException;
 import java.util.List;
@@ -11,11 +17,14 @@ import java.util.function.Consumer;
 
 import retrofit2.Response;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+@RunWith(AndroidJUnit4.class)
 public class ServerTest {
 
-    private Server server = new Server();
+    private Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    private Server server = new Server(context);
 
     @Test
     public void getProducts() throws IOException {
