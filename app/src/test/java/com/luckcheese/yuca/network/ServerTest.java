@@ -1,5 +1,6 @@
 package com.luckcheese.yuca.network;
 
+import com.luckcheese.yuca.model.Price;
 import com.luckcheese.yuca.model.Product;
 
 import org.junit.Test;
@@ -31,5 +32,16 @@ public class ServerTest {
                 assertNotNull("product is null", product);
             }
         });
+
+        Product firstProduct = result.get(0);
+        assertNotNull("price is null", firstProduct.getPrice());
+        assertNotNull("picture is null", firstProduct.getPicture());
+        assertNotNull("title is null", firstProduct.getTitle());
+        assertNotNull("id is null", firstProduct.getId());
+        assertNotNull("_link is null", firstProduct.getLink());
+
+        Price firstProductPrice = firstProduct.getPrice();
+        assertNotNull("current price is null", firstProductPrice.getCurrent());
+        assertNotNull("price installments is null", firstProductPrice.getInstallment());
     }
 }
