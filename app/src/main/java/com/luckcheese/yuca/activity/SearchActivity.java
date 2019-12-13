@@ -21,7 +21,7 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements ProductsCallback, OnProductClickListener {
 
-    private SearchController controller;
+    private SearchController searchController;
     private ProductsAdapter adapter;
 
     @Override
@@ -31,7 +31,7 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        controller = new SearchController(this);
+        searchController = new SearchController(this);
         configureView();
 
         search();
@@ -48,7 +48,7 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
     }
 
     private void search() {
-        controller.getProducts(this);
+        searchController.getProducts(this);
     }
 
     // ----- ProductsCallback
