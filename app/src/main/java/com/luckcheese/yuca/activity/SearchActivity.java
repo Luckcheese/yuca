@@ -1,6 +1,5 @@
 package com.luckcheese.yuca.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.luckcheese.yuca.R;
+import com.luckcheese.yuca.controller.FlowController;
 import com.luckcheese.yuca.controller.SearchController;
 import com.luckcheese.yuca.controller.callback.ProductsCallback;
 import com.luckcheese.yuca.model.Product;
@@ -22,6 +22,7 @@ import java.util.List;
 public class SearchActivity extends AppCompatActivity implements ProductsCallback, OnProductClickListener {
 
     private SearchController searchController;
+    private FlowController flowController;
     private ProductsAdapter adapter;
 
     @Override
@@ -32,6 +33,7 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
         setSupportActionBar(toolbar);
 
         searchController = new SearchController(this);
+        flowController = new FlowController();
         configureView();
 
         search();
@@ -68,9 +70,6 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
 
     @Override
     public void onProduct(Product product) {
-        Intent intent = new Intent(this, WebViewActivity.class);
-        intent.putExtra(WebViewActivity.INTENT_PAGE_TITLE, product.getTitle());
-        intent.putExtra(WebViewActivity.INTENT_PAGE_URL, product.getLink());
-        startActivity(intent);
+        flowController.openProductDetails(this, product);
     }
 }
