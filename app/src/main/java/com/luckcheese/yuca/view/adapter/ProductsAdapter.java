@@ -14,7 +14,7 @@ import com.luckcheese.yuca.view.holder.ProductItemListViewHolder;
 
 import java.util.List;
 
-public class ProductsAdapter extends RecyclerView.Adapter {
+public class ProductsAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
     private final LayoutInflater layoutInflater;
 
@@ -33,7 +33,11 @@ public class ProductsAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View layout = layoutInflater.inflate(R.layout.item_product, parent, false);
-        return new ProductItemListViewHolder(layout);
+        layout.setOnClickListener(this);
+
+        ProductItemListViewHolder holder = new ProductItemListViewHolder(layout);
+        layout.setTag(R.id.item_list_holder, holder);
+        return holder;
     }
 
     @Override
@@ -49,6 +53,15 @@ public class ProductsAdapter extends RecyclerView.Adapter {
         }
         else {
             return 0;
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Object tag = view.getTag(R.id.item_list_holder);
+        if (tag instanceof ProductItemListViewHolder) {
+            Product p = ((ProductItemListViewHolder) tag).getProduct();
+
         }
     }
 }

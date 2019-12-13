@@ -35,6 +35,10 @@ public class ProductItemListViewHolder extends RecyclerView.ViewHolder {
         configureView();
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
     private void configureView() {
         Glide
                 .with(imageView)
