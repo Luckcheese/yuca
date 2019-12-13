@@ -50,7 +50,7 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
     }
 
     private void search() {
-        searchController.getProducts(this);
+        searchController.getProducts(null, this);
     }
 
     // ----- ProductsCallback

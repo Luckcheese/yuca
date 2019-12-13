@@ -19,8 +19,8 @@ public class SearchController {
         server = new Server(context);
     }
 
-    public void getProducts(@NonNull final ProductsCallback callback) {
-        server.call(server.getRequests().getProducts(), new ServerCallback<List<Product>>() {
+    public void getProducts(String searchQuery, @NonNull final ProductsCallback callback) {
+        server.call(server.getRequests().getProducts(searchQuery), new ServerCallback<List<Product>>() {
 
             @Override
             public void onSuccess(List<Product> result) {
