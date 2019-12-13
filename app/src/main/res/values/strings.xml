@@ -3,4 +3,7 @@
     <string name="title_activity_search">Lista de Produtos</string>
 
     <string name="default_server_error">Houve um erro. Tento mais tarde.</string>
+
+    <string name="search_title">Buscar produto</string>
+    <string name="search_hint">Procure produtos de seu interesse</string>
 </resources>
