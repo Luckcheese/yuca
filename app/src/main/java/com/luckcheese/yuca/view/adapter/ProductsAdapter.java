@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.luckcheese.yuca.R;
 import com.luckcheese.yuca.model.Product;
+import com.luckcheese.yuca.view.adapter.callback.OnProductClickListener;
 import com.luckcheese.yuca.view.holder.ProductItemListViewHolder;
 
 import java.util.List;
@@ -17,11 +18,13 @@ import java.util.List;
 public class ProductsAdapter extends RecyclerView.Adapter implements View.OnClickListener {
 
     private final LayoutInflater layoutInflater;
+    private final OnProductClickListener listener;
 
     private List<Product> products;
 
-    public ProductsAdapter(Context context) {
+    public ProductsAdapter(Context context, OnProductClickListener listener) {
         layoutInflater = LayoutInflater.from(context);
+        this.listener = listener;
     }
 
     public void setProducts(List<Product> products) {
@@ -61,7 +64,7 @@ public class ProductsAdapter extends RecyclerView.Adapter implements View.OnClic
         Object tag = view.getTag(R.id.item_list_holder);
         if (tag instanceof ProductItemListViewHolder) {
             Product p = ((ProductItemListViewHolder) tag).getProduct();
-
+            listener.onProduct(p);
         }
     }
 }

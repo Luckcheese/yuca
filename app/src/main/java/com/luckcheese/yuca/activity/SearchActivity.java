@@ -14,10 +14,11 @@ import com.luckcheese.yuca.controller.SearchController;
 import com.luckcheese.yuca.controller.callback.ProductsCallback;
 import com.luckcheese.yuca.model.Product;
 import com.luckcheese.yuca.view.adapter.ProductsAdapter;
+import com.luckcheese.yuca.view.adapter.callback.OnProductClickListener;
 
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements ProductsCallback {
+public class SearchActivity extends AppCompatActivity implements ProductsCallback, OnProductClickListener {
 
     private SearchController controller;
     private ProductsAdapter adapter;
@@ -36,7 +37,7 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
     }
 
     private void configureView() {
-        adapter = new ProductsAdapter(this);
+        adapter = new ProductsAdapter(this, this);
 
         RecyclerView listView = findViewById(R.id.list);
         listView.setAdapter(adapter);
@@ -49,6 +50,8 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
         controller.getProducts(this);
     }
 
+    // ----- ProductsCallback
+
     @Override
     public void onProductsReceived(List<Product> products) {
         adapter.setProducts(products);
@@ -58,5 +61,12 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
     public void onServerError(int statusCode, String message) {
         View rootView = findViewById(android.R.id.content);
         Snackbar.make(rootView, message, 5000).show();
+    }
+
+    // ----- OnProductClickListener
+
+    @Override
+    public void onProduct(Product product) {
+
     }
 }
