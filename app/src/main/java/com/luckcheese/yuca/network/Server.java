@@ -4,10 +4,13 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import com.luckcheese.yuca.BuildConfig;
 import com.luckcheese.yuca.R;
 
 import java.io.IOException;
 
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,9 +23,23 @@ public class Server {
     private final String serverError;
 
     public Server(Context context) {
+
+        // log
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        if (BuildConfig.DEBUG) {
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else {
+            logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        }
+
+        // http client
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.addInterceptor(logging);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(context.getString(R.string.host))
                 .addConverterFactory(GsonConverterFactory.create())
+                .client(httpClient.build())
                 .build();
 
         requests = retrofit.create(Requests.class);
