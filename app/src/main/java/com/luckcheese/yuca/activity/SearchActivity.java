@@ -1,5 +1,6 @@
 package com.luckcheese.yuca.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -67,6 +68,9 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
 
     @Override
     public void onProduct(Product product) {
-
+        Intent intent = new Intent(this, WebViewActivity.class);
+        intent.putExtra(WebViewActivity.INTENT_PAGE_TITLE, product.getTitle());
+        intent.putExtra(WebViewActivity.INTENT_PAGE_URL, product.getLink());
+        startActivity(intent);
     }
 }
