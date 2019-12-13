@@ -24,7 +24,7 @@ import com.luckcheese.yuca.view.adapter.callback.OnProductClickListener;
 
 import java.util.List;
 
-public class SearchActivity extends AppCompatActivity implements ProductsCallback, OnProductClickListener {
+public class SearchActivity extends AppCompatActivity implements ProductsCallback, OnProductClickListener, SearchView.OnQueryTextListener {
 
     private SearchController searchController;
     private FlowController flowController;
@@ -55,6 +55,7 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(this);
 
         return true;
     }
@@ -91,5 +92,23 @@ public class SearchActivity extends AppCompatActivity implements ProductsCallbac
     @Override
     public void onProduct(Product product) {
         flowController.openProductDetails(this, product);
+    }
+
+    // ----- SearchView.OnQueryTextListener
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        searchController.getProducts(query,this);
+        searchView.clearFocus();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (newText.equals("")) {
+            searchController.getProducts(null,this);
+            return true;
+        }
+        return false;
     }
 }
